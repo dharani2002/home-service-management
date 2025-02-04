@@ -5,7 +5,7 @@ import { ServiceProvider } from "./ServiceProvider.model";
 export type ServiceType="plumbing"| "gardening" |"furnishing" |"wiring" | "cleaning";
 
 export interface Service extends Document{
-    requestType: ServiceType;
+    serviceType: ServiceType;
     description:string;
     createdBy:User;
     providedBy:ServiceProvider[];
@@ -15,7 +15,7 @@ export interface Service extends Document{
 }
 
 const serviceSchema: Schema<Service> = new Schema({
-    requestType: {
+    serviceType: {
         type: String,
         enum: ["plumbing", "gardening", "furnishing", "wiring", "cleaning"],
         required: true

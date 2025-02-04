@@ -6,10 +6,11 @@ export interface User extends Document{
     password:string;
     fullname:string;
     refreshToken:string;
+    avatar:string
     createdAt:Date;
     updateAt:Date;
     serviceHistory:Request[];
-}//avatar
+}
 const userSchema:Schema<User>=new Schema({
     username: {
         type: String,
@@ -27,10 +28,20 @@ const userSchema:Schema<User>=new Schema({
         type: String,
         required: [true, "password is required"],
     },
+    fullname:{
+        type:String,
+        required:true
+    },
     serviceHistory:[{
         type:Schema.Types.ObjectId,
         ref:"Service"
-    }]
+    }],
+    avatar:{
+        type:String,
+    },
+    refreshToken:{
+        type:String,
+    }
 },{timestamps:true})
 
 const UserModel = (mongoose.models.User as mongoose.Model<User>) || mongoose.model<User>("User", userSchema)
